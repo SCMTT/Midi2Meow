@@ -715,12 +715,18 @@ class SegmentationFactory:
             return AdaptiveSegmentationStrategy(midi_data)
         elif strategy == SegmentationStrategy.SSM:
             # Import here to avoid circular dependency
-            from .ssm_segmentation import SSMSegmentationStrategy
+            try:
+                from .ssm_segmentation import SSMSegmentationStrategy
+            except ImportError:
+                from strategies.ssm_segmentation import SSMSegmentationStrategy
 
             return SSMSegmentationStrategy(midi_data)
         elif strategy == SegmentationStrategy.SSM_PRO:
             # Import here to avoid circular dependency
-            from .ssm_pro_segmentation import SSMProSegmentationStrategy
+            try:
+                from .ssm_pro_segmentation import SSMProSegmentationStrategy
+            except ImportError:
+                from strategies.ssm_pro_segmentation import SSMProSegmentationStrategy
 
             # Prepare feature weights if config is provided
             feature_weights = None

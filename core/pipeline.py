@@ -199,7 +199,10 @@ class M2MPipeline(Observable):
             List of Section objects
         """
         # Import segmentation strategy
-        from ..strategies.segmentation import SegmentationFactory
+        try:
+            from ..strategies.segmentation import SegmentationFactory
+        except ImportError:
+            from strategies.segmentation import SegmentationFactory
 
         # Ensure MIDI data is loaded
         if self.midi_data is None:
@@ -231,7 +234,10 @@ class M2MPipeline(Observable):
         Uses the configured transposition strategy.
         """
         # Import transposition optimizer
-        from ..strategies.transposition import TranspositionFactory
+        try:
+            from ..strategies.transposition import TranspositionFactory
+        except ImportError:
+            from strategies.transposition import TranspositionFactory
 
         # Ensure MIDI data is loaded
         if self.midi_data is None:

@@ -169,7 +169,10 @@ class TranspositionFactory:
             return WhiteKeyRateOptimizer()
         elif strategy == TranspositionStrategy.GAME_PIANO:
             # Import here to avoid circular dependency
-            from .game_piano import GamePianoOptimizer
+            try:
+                from .game_piano import GamePianoOptimizer
+            except ImportError:
+                from strategies.game_piano import GamePianoOptimizer
 
             return GamePianoOptimizer()
         else:

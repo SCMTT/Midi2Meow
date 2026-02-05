@@ -90,7 +90,10 @@ class SSMSegmentationStrategy(SegmentationStrategyABC, SSMBaseStrategy):
 
         if len(features) < 2:
             # Not enough data for SSM, fall back to basic
-            from .segmentation import BasicSegmentationStrategy
+            try:
+                from .segmentation import BasicSegmentationStrategy
+            except ImportError:
+                from strategies.segmentation import BasicSegmentationStrategy
 
             basic = BasicSegmentationStrategy(self.midi_data)
             return basic.split(melody_notes=melody_notes, min_duration=min_duration)
