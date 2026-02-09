@@ -36,6 +36,8 @@ class TranspositionConfig:
     strategy: TranspositionStrategy = TranspositionStrategy.WHITE_KEY_RATE
     semitone_min: int = -27
     semitone_max: int = 27
+    melody_threshold: int = 60
+    enable_melody_threshold: bool = True
 
 
 @dataclass
@@ -97,6 +99,8 @@ class Section:
     # Berserk Mode
     berserk_mode: bool = False
     max_pitch: int = 83  # B5 (Game piano max pitch)
+    # Melody threshold for melody-only mode
+    melody_threshold: int = 60
 
     @property
     def duration(self) -> float:

@@ -618,7 +618,7 @@ class WaveformCanvas(tk.Canvas):
                         enable_threshold=False,
                     )
                     global_rate_text = f"\n全体白键率: {global_rate * 100:.1f}%"
-        except Exception:
+        except Exception as e:
             # Log error but don't crash tooltip display
             import logging
 
@@ -882,6 +882,7 @@ class WaveformCanvas(tk.Canvas):
                     end=section.end,
                     transpose=section.transpose,
                     reasons=section.reasons + ["用户添加"],
+                    melody_threshold=section.melody_threshold,
                 )
                 section.end = split_time
                 self.sections.insert(i + 1, new_section)
